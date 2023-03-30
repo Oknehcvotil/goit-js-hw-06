@@ -14,16 +14,23 @@ createBtn.addEventListener("click", onCreateBtnClicl);
 function onCreateBtnClicl() {
   const amountBoxes = boxQuantity.value;
   let boxSize = 30;
+  let boxes = [];
   boxesArea.innerHTML = "";
 
+  if (amountBoxes > 100) {
+    return alert("max value 100");
+  }
+
   for (let i = 0; i < amountBoxes; i += 1) {
-    boxSize += 10;
     const box = document.createElement("div");
     box.style.width = `${boxSize}px`;
     box.style.height = `${boxSize}px`;
     box.style.backgroundColor = getRandomHexColor();
-    boxesArea.append(box);
+    boxSize += 10;
+    boxes.push(box);
   }
+
+  boxesArea.append(...boxes);
 }
 
 destroyBtn.addEventListener("click", onDestroyBtnClick);
